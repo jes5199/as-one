@@ -48,15 +48,15 @@ void draw() {
         topic = "/asOne/brain/right";
         byteString = found.substring(7).trim();
       } else if(found.startsWith("LEFT: ")) {
-        topic = "/asOne/brain/right";
+        topic = "/asOne/brain/left";
         byteString = found.substring(7).trim();
       } else {
         continue;
       }
       int resultCode = Integer.parseInt(byteString);
-      //String line = topic +" "+resultCode;
+      String line = topic +" "+resultCode;
       //writer.println(line);
-      //System.out.println(line);
+      System.out.println(line);
       mqtt.publish(topic, ""+resultCode);
     }
   }
@@ -74,5 +74,6 @@ void serialEvent (Serial myPort) {
 void keyPressed() {
   writer.flush();  // Writes the remaining data to the file
   writer.close();  // Finishes the file
+  mySerial.stop();
   exit();  // Stops the program
 }
